@@ -1,0 +1,24 @@
+# ANI calc
+universe = vanilla
+
+# create log  and error
+log = writeCompareDAG-$(Cluster).log
+error = writeCompareDAG.err
+output = writeCompareDAG.out
+
+# executable and arguments
+executable = writeCompareDAG.py
+arguments = phyladirs.txt
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT
+transfer_input_files = phyladirs.txt
+
+# Tell HTCondor what amount of compute resources
+request_cpus = 1
+request_memory = 100MB
+request_disk = 100MB
+
+# possible flocking line, +WantFlocking = true
+
+# queue jobs
+queue

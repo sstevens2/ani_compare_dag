@@ -1,0 +1,26 @@
+# ANI calc
+universe = vanilla  
+
+# create log  and error
+log = $(phylum)/ani-$(phylum)_ani.log 
+error = $(phylum)/errs/ani-$(phylum)-$(Cluster)-$(sub)v$(query).err 
+output = $(phylum)/$(phylum)-$(sub)v$(query).ani.out
+
+# executable and arguments
+executable = /home/sstevens2/ANIcalculator_v1/ANIcalculator
+arguments = -genome1fna $(sub) -genome2fna $(query) -stdout
+should_transfer_files = YES  
+when_to_transfer_output = ON_EXIT
+transfer_input_files = /home/sstevens2/ANIcalculator_v1/ANIcalculator,/home/sstevens2/ANIcalculator_v1/nsimscan,$(phylum)/$(sub),$(phylum)/$(query)
+
+# Tell HTCondor what amount of compute resources  
+request_cpus = 1  
+request_memory = 1GB  
+request_disk = 100MB
+
+# see http://chtc.cs.wisc.edu/helloworld.shtml for more info about two lines below
+# possible sending jobs to  other clusters at UW line, +WantFlocking = true  
+# possible sending jobs OSG line, +WantGlideIn = true
+
+# queue jobs  
+queue sub,query from $(ani_combo)
