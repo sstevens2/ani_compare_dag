@@ -41,14 +41,14 @@ If you are submitting **a lot** of jobs, you should consider turning on flocking
 3.changing how anicombos are written - still working on this!!! test before finishing this section
 
 ### What are the files in this repo???
-`combineANI.sh` - script that puts together all of the output from each phylum directory
-`errdirs.sh` - creates the error directories for each phylum/directory
-`header.all.ani.out` - header for all ANIcalculator output
-`makeANIcombos.py` - script that makes a list of all the ANI combinations for a directory
-`phylum.sub` - submission script for each directory/phylum included
-`runAllANIcompare.dag` - DAGman file to run the whole workflow
-`writeCompareDAG.py` - script that writes the `compare.dag` and `compare.dag.config` files, edit this if you need to change the DAGman config.
-`writeCompareDAG.sub` - submission script for the script above
+`combineANI.sh` - script that puts together all of the output from each phylum directory  
+`errdirs.sh` - creates the error directories for each phylum/directory  
+`header.all.ani.out` - header for all ANIcalculator output  
+`makeANIcombos.py` - script that makes a list of all the ANI combinations for a directory  
+`phylum.sub` - submission script for each directory/phylum included  
+`runAllANIcompare.dag` - DAGman file to run the whole workflow  
+`writeCompareDAG.py` - script that writes the `compare.dag` and `compare.dag.config` files, edit this if you need to change the DAGman config  
+`writeCompareDAG.sub` - submission script for the script above  
 
 
 
