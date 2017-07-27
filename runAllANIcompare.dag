@@ -1,5 +1,5 @@
 JOB Write_DAG writeCompareDAG.sub
 SUBDAG EXTERNAL Run_compare compare.dag
-SCRIPT PRE Write_DAG e
+SCRIPT PRE Write_DAG errdirs.sh
 
 PARENT Write_DAG CHILD Run_compare
