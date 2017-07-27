@@ -40,6 +40,12 @@ If you are submitting **a lot** of jobs, you should consider turning on flocking
 2. If you are running a big number of comparisons, you may want to change the `wantFlocking`(send jobs to other UW clusters) or `WantGlideIn` (send jobs to OSG) lines.  For these lines remove from the `#` to before the `+`. There is a little info about when to use these lines in [this HTC guide](http://chtc.cs.wisc.edu/helloworld.shtml).
 3.changing how anicombos are written - still working on this!!! test before finishing this section
 
+### Running the pipeline (after setup)
+1. Run the following.
+```
+condor_submit_dag runAllANIcompare.dag
+```
+
 ### What are the files in this repo???
 `combineANI.sh` - script that puts together all of the output from each phylum directory  
 `errdirs.sh` - creates the error directories for each phylum/directory  
@@ -49,7 +55,6 @@ If you are submitting **a lot** of jobs, you should consider turning on flocking
 `runAllANIcompare.dag` - DAGman file to run the whole workflow  
 `writeCompareDAG.py` - script that writes the `compare.dag` and `compare.dag.config` files, edit this if you need to change the DAGman config  
 `writeCompareDAG.sub` - submission script for the script above  
-
 
 
 ### ISSUES
