@@ -59,5 +59,4 @@ condor_submit_dag runAllANIcompare.dag
 
 ### ISSUES
 1. `combineAll.sh` expects that the output worked properly, if it didn't you may need to come up with a new way to combine all `*.out` files in each directory
-2. need to fix making the error dirs...(add into run all with while readline...) - THINK FIXED, remove this line once you've tested it! 
 3. make changes to how to anicombos runs! - take lists and not run if files exist? - WORK ON THIS WHEN YOU COMPARE CB AND ML
