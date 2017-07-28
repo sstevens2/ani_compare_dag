@@ -4,7 +4,8 @@
 import glob, sys
 phylum=sys.argv[1]
 
-def makeCombos(phylum):
+
+def makeCombos(phylum,filelist):
 	with open(phylum+'/ani_combos_'+phylum+'.txt', 'w') as output:
 		used=[]
 		for fn1 in filelist:
@@ -21,4 +22,5 @@ def makeCombos(phylum):
 
 
 if __name__ == "__main__":
-    makeCombos(phylum)
+    flist=glob.glob(phylum+'/*.fna')
+    makeCombos(phylum,flist)
