@@ -1,0 +1,13 @@
+universe = scheduler
+
+# create log  and error
+log = combineANI-$(Cluster).log
+error = combineANI.err
+output = combineANI.out
+
+# executable and arguments
+executable = combineANI.sh
+arguments = phyladirs.txt
+
+# queue jobs
+queue

@@ -23,4 +23,4 @@ request_disk = 100MB
 # possible sending jobs OSG line, +WantGlideIn = true
 
 # queue jobs  
-queue sub,query from $(ani_combo)
+queue

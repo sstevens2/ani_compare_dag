@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import sys, os
+import sys, os, makeANIcombos
 
 """Writes the external DAG file and all the submission files for each phylum in phylum list given.
 	Must be one level up ani_combos_phylumname.txt for each phylum
@@ -34,9 +34,21 @@ comparedag = open('compare.dag', 'w')
 for phylum in phydirs: # Makes 2 lines for each
 	#write phylum and postscript job to DAG
 	phylum=phylum.rstrip('\n')
-	comparedag.write('JOB {0} phylum.sub\n'.format(phylum))
-	comparedag.write('VARS {0} ani_combo="{0}/ani_combos_{0}.txt" phylum="{0}"\n'.format(phylum))
-	comparedag.write('SCRIPT PRE {0} makeANIcombos.py {0}\n'.format(phylum))
-	comparedag.write('SCRIPT POST {0} combineANI.sh {0}\n'.format(phylum))
+	makeANIcombos.makeCombos(phylum)
+	comparedag.write('SPLICE {0} {0}.spl')
+	with open('{0}/ani_combos_{0}.txt'.format(phylum),'r') as combos:
+		combolist=combos.readlines()
+	with open(phylum+'.spl', 'w') as splice:
+		for i, combo in ennumerate(combolist):
+			combo=combo.rstrip('\n')
+			sub,query=combo.split(',')
+			splice.write('JOB {0}{1} phylum.sub\n'.format(combo,i))
+			splice.write('VARS {0}{1} phylum="{0}" sub="{2}" query="{3}"\n'.format(phylum,i,sub,query))
 
 comparedag.close()
+
+
+
+
+
+
