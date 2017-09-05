@@ -43,7 +43,7 @@ for phylum in phydirs: # Makes 2 lines for each
 		for i, combo in enumerate(combolist):
 			combo=combo.rstrip('\n')
 			sub,query=combo.split(',')
-			splice.write('JOB {0}{1} phylum.sub\n'.format(combo,i))
+			splice.write('JOB {0}{1} phylum.sub\n'.format(phylum,i))
 			splice.write('VARS {0}{1} phylum="{0}" sub="{2}" query="{3}"\n'.format(phylum,i,sub,query))
 
 comparedag.close()
