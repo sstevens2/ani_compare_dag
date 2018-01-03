@@ -11,16 +11,16 @@ __email__ = "sstevens2@wisc.edu"
 
 
 def usage():
-	print "Usage: writeCompareDAG.py groupslist.txt"
+	print "Usage: writeCompareDAG.py groupslist.txt splitsize(int)"
 
 
-if len(sys.argv) != 2:
+if len(sys.argv) != 3:
 	usage()
 	exit()
 
-
 with open(sys.argv[1],'r') as f:
 	groupdirs=f.readlines()
+splitsize=int(sys.argv[2])
 
 ## writing out the config options for the compare dag
 with open('compare.dag.config','w') as configout:
@@ -50,12 +50,23 @@ for group in groupdirs: # Makes 2 lines for each
 	comparedag.write('SPLICE {0} {0}.spl\n'.format(group))
 	with open('{0}/ani_combos_{0}.txt'.format(group),'r') as combos:
 		combolist=combos.readlines()
+		numsplits=int(math.ceil(len(combolist) / splitsize))
+		lastsplitsize=len(combolist) % splitsize
 	with open(group+'.spl', 'w') as splice:
-		for i, combo in enumerate(combolist):
-			combo = combo.rstrip('\n')
-			sub,query = combo.split(',')
-			splice.write('JOB {0}{1} group.sub\n'.format(group,i))
-			splice.write('VARS {0}{1} group="{0}" sub="{2}" query="{3}"\n'.format(group,i,sub,query))
+		start=1
+		for split in range(1,numsplits):
+			end=start+splitsize-1
+			splice.write('JOB {0}{1} group.sub\n'.format(group,split))
+			splice.write('VARS {0}{1} group="{0}" start="{2}" end="{3}" list="{0}/ani_combos_{0}.txt"\n'.format(group,split,start,end))
+			start=end+1
+		# last split is a little different, start should be right but depends on remainder (lastsplitsize)
+		if lastsplitsize != 0:
+			end=start+lastsplitsize-1
+		else:
+			end=start+splitsize-1
+		split+=1
+		splice.write('JOB {0}{1} group.sub\n'.format(group,split))
+		splice.write('VARS {0}{1} group="{0}" start="{2}" end="{3}" list="{0}/ani_combos_{0}.txt"\n'.format(group,split,start,end))
 
 comparedag.close()
 

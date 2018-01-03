@@ -8,7 +8,7 @@ output = writeCompareDAG.out
 
 # executable and arguments
 executable = writeCompareDAG.py
-arguments = gropuslist.txt
+arguments = groupslist.txt 50
 
 # queue jobs
 queue

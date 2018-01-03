@@ -54,6 +54,10 @@ If the wrong number of lists are found it will give an error.
 If the no lists are provided it will do all v all comparison within that phylum.
 This is decided on a phylum/directory basis, so you could not include these two lists in those where you want all v all comparisons and the lists where you do not.
 
+##### Change the number of comparisons which are batched together
+By default this will submit them in groups of 50 comparisons each.  If you'd like to change that, change `50` to your desired group size in the `arguments=` line of `writeCompareDAG.sub`.
+
+
 ### Running the pipeline (after setup)
 1. Run the following.
 ```
