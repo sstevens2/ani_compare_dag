@@ -3,4 +3,4 @@
 while read dirname
 do
 mkdir $dirname/errs
-done < phyladirs.txt
+done < groupslist.txt

@@ -7,7 +7,7 @@ output = combineANI.out
 
 # executable and arguments
 executable = combineANI.sh
-arguments = phyladirs.txt
+arguments = groupslist.txt
 
 # queue jobs
 queue

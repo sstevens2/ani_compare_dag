@@ -2,16 +2,16 @@
 universe = vanilla  
 
 # create log  and error
-log = $(phylum)/ani-$(phylum)_ani.log 
-error = $(phylum)/errs/ani-$(phylum)-$(Cluster)-$(sub)v$(query).err 
-output = $(phylum)/$(phylum)-$(sub)v$(query).ani.out
+log = $(group)/ani-$(group)_ani.log 
+error = $(group)/errs/ani-$(group)-$(Cluster)-$(sub)v$(query).err 
+output = $(group)/$(group)-$(sub)v$(query).ani.out
 
 # executable and arguments
 executable = /home/sstevens2/ANIcalculator_v1/ANIcalculator
 arguments = -genome1fna $(sub) -genome2fna $(query) -stdout
 should_transfer_files = YES  
 when_to_transfer_output = ON_EXIT
-transfer_input_files = /home/sstevens2/ANIcalculator_v1/ANIcalculator,/home/sstevens2/ANIcalculator_v1/nsimscan,$(phylum)/$(sub),$(phylum)/$(query)
+transfer_input_files = /home/sstevens2/ANIcalculator_v1/ANIcalculator,/home/sstevens2/ANIcalculator_v1/nsimscan,$(group)/$(sub),$(group)/$(query)
 
 # Tell HTCondor what amount of compute resources  
 request_cpus = 1  

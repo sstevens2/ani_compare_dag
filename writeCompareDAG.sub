@@ -8,7 +8,7 @@ output = writeCompareDAG.out
 
 # executable and arguments
 executable = writeCompareDAG.py
-arguments = phyladirs.txt
+arguments = gropuslist.txt
 
 # queue jobs
 queue

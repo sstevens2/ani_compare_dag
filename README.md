@@ -20,7 +20,7 @@ wget https://ani.jgi-psf.org/download_files/ANIcalculator_v1.tgz
 tar -xzvf ANIcalculator_v1.tgz
 ```
 2. In this directory place the directories you want to run ANI compareisons within. You need to change the extensions to `.fna` if they are `.fa` or `.fasta`.  These files should only be the **nucleotide sequences** for the coding regions.  **No tRNA or rRNA gene sequences should be included.**
-3. Create a file called `phyladirs.txt` that contains a list of each of the directories to run comparisons on. It doesn't have to be separated by phylum but that is how it was originally designed. The program with run all pairwise ANI comparisons within each directory given. It will **not** run self verses self because ANI calculator doesn't like running on the same file twice. It will **only** run the comparison in one direction because ANI calculator runs both directions by default.  The `phyladirs.txt` file should have one directory per line with no `/` after it.  Example:
+3. Create a file called `groupslist.txt` that contains a list of each of the directories to run comparisons on. It doesn't have to be separated by phylum but that is how it was originally designed. The program with run all pairwise ANI comparisons within each directory given. It will **not** run self verses self because ANI calculator doesn't like running on the same file twice. It will **only** run the comparison in one direction because ANI calculator runs both directions by default.  The `groupslist.txt` file should have one directory per line with no `/` after it.  Example:
 ```
 $ head phyladirs.txt
 acidobacteria
@@ -29,7 +29,7 @@ bacteroidetes
 chlorobi
 chloroflexi
 ```
-3. In `phylum.sub` change the `executable = ` and `transfer_input_files = ` lines in  to match where you installed `ANIcalculator` and `nsimscan`.  You will likely only need to change `sstevens2` to your username.
+3. In `group.sub` change the `executable = ` and `transfer_input_files = ` lines in  to match where you installed `ANIcalculator` and `nsimscan`.  You will likely only need to change `sstevens2` to your username.
 
 #### Optional additional Setup
 ##### Check Number of Comparisons
@@ -64,16 +64,16 @@ condor_submit_dag runAllANIcompare.dag
 
 `runAllANIcompare.dag` 
 1. Makes the `err` directories for runfiles to write to for each phylum
-2. Submits the script to write up a subDAG and splices (one for each phylum) for all of the possible combinations
+2. Submits the script to write up a subDAG and splices (one for each group) for all of the possible combinations
 3. Runs the subDAG that was written in step 2, which runs all of the ani comparisons.
-4. Puts together the result files by phylum/directory.
+4. Puts together the result files by group.
 
 ### What are the files in this repo???
 `combineANI.sh` - script that puts together all of the output from each phylum directory  
 `errdirs.sh` - creates the error directories for each phylum/directory  
 `header.all.ani.out` - header for all ANIcalculator output  
 `makeANIcombos.py` - script that makes a list of all the ANI combinations for a directory or between two lists
-`phylum.sub` - submission script for each directory/phylum included  
+`group.sub` - submission script for each group/directory included  
 `runAllANIcompare.dag` - DAGman file to run the whole workflow  
 `writeCompareDAG.py` - script that writes the `compare.dag` and `compare.dag.config` files, edit this if you need to change the DAGman config  
 `writeCompareDAG.sub` - submission script for the script above  
