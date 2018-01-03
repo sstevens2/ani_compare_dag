@@ -51,5 +51,5 @@ if __name__ == "__main__":
 	else:
 		usage()
 		exit(2)
-	makeCombos(group), flist, flist2)
+	makeCombos(group, flist, flist2)
 
