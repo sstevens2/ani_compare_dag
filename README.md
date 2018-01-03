@@ -10,6 +10,8 @@ This setup uses ANI calculator from (https://ani.jgi-psf.org/html/anicalculator.
 
 This workflow is meant to run using HTCondor DAG's on a HTC system (UW CHTC).
 
+I originally set this up to run on a bunch of folders which were from the same phylum but you can often replace phylum with directory in many cases.  I also modified it so it will do ANI comparisons between two directories instead of within.
+
 
 ### Setup
 1. Download and unpack the ANIcalculator tarball to your home folder.
@@ -57,6 +59,14 @@ This is decided on a phylum/directory basis, so you could not include these two 
 ```
 condor_submit_dag runAllANIcompare.dag
 ```
+
+#### A little on how it works
+
+`runAllANIcompare.dag` 
+1. Makes the `err` directories for runfiles to write to for each phylum
+2. Submits the script to write up a subDAG and splices (one for each phylum) for all of the possible combinations
+3. Runs the subDAG that was written in step 2, which runs all of the ani comparisons.
+4. Puts together the result files by phylum/directory.
 
 ### What are the files in this repo???
 `combineANI.sh` - script that puts together all of the output from each phylum directory  
