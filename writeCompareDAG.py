@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import sys, os, makeANIcombos, glob, math
+import sys, os, makeANIcombos, glob
 
 """Writes the external DAG file and all the submission files for each group in group list given.
 	Must be one level up ani_combos_groupname.txt for each group
@@ -50,23 +50,18 @@ for group in groupdirs: # Makes 2 lines for each
 	comparedag.write('SPLICE {0} {0}.spl\n'.format(group))
 	with open('{0}/ani_combos_{0}.txt'.format(group),'r') as combos:
 		combolist=combos.readlines()
-		numsplits=int(math.ceil(len(combolist) / splitsize))
-		lastsplitsize=len(combolist) % splitsize
+	os.system('split -a 5 -d -l {1} {0}/ani_combos_{0}.txt spllists/ani_combos_{0}.txt.'.format(group,splitsize))
+	splits = glob.glob('spllists/ani_combos_{0}.txt.*'.format(group))
 	with open(group+'.spl', 'w') as splice:
 		start=1
-		for split in range(1,numsplits):
-			end=start+splitsize-1
+		for split, splitlist in enumerate(splits):
 			splice.write('JOB {0}{1} group.sub\n'.format(group,split))
-			splice.write('VARS {0}{1} group="{0}" start="{2}" end="{3}" list="{0}/ani_combos_{0}.txt"\n'.format(group,split,start,end))
-			start=end+1
-		# last split is a little different, start should be right but depends on remainder (lastsplitsize)
-		if lastsplitsize != 0:
-			end=start+lastsplitsize-1
-		else:
-			end=start+splitsize-1
-		split+=1
-		splice.write('JOB {0}{1} group.sub\n'.format(group,split))
-		splice.write('VARS {0}{1} group="{0}" start="{2}" end="{3}" list="{0}/ani_combos_{0}.txt"\n'.format(group,split,start,end))
+			subcombolist = [line.rstrip('\n') for line in open(splitlist)]
+			splitsubcombolist=[x.split(',') for x in subcombolist]
+			subcombolist=[j for i in splitsubcombolist for j in i] #better subcombolist
+			subcombolistpath=[group+"/"+x for x in subcombolist]
+			transferlist=','.join(set(subcombolistpath))
+			splice.write('VARS {0}{1} group="{0}" spllist="{2}" totransfer="{3}"\n'.format(group,split,splitlist,transferlist))
 
 comparedag.close()
 

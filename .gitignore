@@ -1,0 +1,14 @@
+compare.dag*
+runAllANIcompare.dag.*
+writeCompareDAG.err
+writeCompareDAG.out
+writeCompareDAG*.log
+spllists
+*.ani.out
+groupslist.txt
+ANIcalculator.log
+*.fna
+ani_combos_*.txt
+ani-*_ani.log
+errs
+*.spl

@@ -3,15 +3,15 @@ universe = vanilla
 
 # create log  and error
 log = $(group)/ani-$(group)_ani.log 
-error = $(group)/errs/ani-$(group)-$(Cluster)-$(start)v$(end).err 
-output = $(group)/errs/$(group)-$(start)v$(end).stdout
+error = $(group)/errs/ani-$(group)-$(Cluster).err 
+output = $(group)/errs/ani-$(group)-$(Cluster).stdout
 
 # executable and arguments
 executable = group.sh 
-arguments = $(list) $(start) $(end) $(group)
+arguments = $(spllist) $(group)
 should_transfer_files = YES  
 when_to_transfer_output = ON_EXIT
-transfer_input_files = /home/sstevens2/ANIcalculator_v1/ANIcalculator,/home/sstevens2/ANIcalculator_v1/nsimscan,$(group)/$(sub),$(group)/$(query)
+transfer_input_files = /home/sstevens2/ANIcalculator_v1/ANIcalculator,/home/sstevens2/ANIcalculator_v1/nsimscan,$(spllist),$(totransfer)
 
 # Tell HTCondor what amount of compute resources  
 request_cpus = 1  
