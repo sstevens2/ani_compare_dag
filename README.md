@@ -5,7 +5,7 @@ It will run all pairwise comparisons for the fasta files that end in `*.fna` wit
 You need to change the extensions to `.fna` if they are `.fa` or `.fasta`.
 These files should only be the **nucleotide sequences** for the coding regions.  **No tRNA or rRNA gene sequences should be included.**
 
-This setup uses ANI calculator from [https://ani.jgi-psf.org/html/anicalculator.php].(https://ani.jgi-psf.org/html/anicalculator.php)
+This setup uses [ANI calculator from JGI](https://ani.jgi-psf.org/html/home.php?).
 [Link to direct download software](https://ani.jgi-psf.org/download_files/ANIcalculator_v1.tgz).
 
 This workflow is meant to run using HTCondor DAG's on a HTC system (UW CHTC).
