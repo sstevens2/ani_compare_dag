@@ -22,7 +22,7 @@ tar -xzvf ANIcalculator_v1.tgz
 2. In this directory place the directories you want to run ANI compareisons within. You need to change the extensions to `.fna` if they are `.fa` or `.fasta`.  These files should only be the **nucleotide sequences** for the coding regions.  **No tRNA or rRNA gene sequences should be included.**
 3. Create a file called `groupslist.txt` that contains a list of each of the directories to run comparisons on. It doesn't have to be separated by phylum but that is how it was originally designed. The program with run all pairwise ANI comparisons within each directory given. It will **not** run self verses self because ANI calculator doesn't like running on the same file twice. It will **only** run the comparison in one direction because ANI calculator runs both directions by default.  The `groupslist.txt` file should have one directory per line with no `/` after it.  Example:
 ```
-$ head phyladirs.txt
+$ head grouplist.txt
 acidobacteria
 actinobacteria
 bacteroidetes
