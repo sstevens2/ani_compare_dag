@@ -50,6 +50,7 @@ for group in groupdirs: # Makes 2 lines for each
 	comparedag.write('SPLICE {0} {0}.spl\n'.format(group))
 	with open('{0}/ani_combos_{0}.txt'.format(group),'r') as combos:
 		combolist=combos.readlines()
+	os.system('mkdir spllists/')
 	os.system('split -a 5 -d -l {1} {0}/ani_combos_{0}.txt spllists/ani_combos_{0}.txt.'.format(group,splitsize))
 	splits = glob.glob('spllists/ani_combos_{0}.txt.*'.format(group))
 	with open(group+'.spl', 'w') as splice:
