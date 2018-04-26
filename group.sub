@@ -15,7 +15,7 @@ transfer_input_files = /home/sstevens2/ANIcalculator_v1/ANIcalculator,/home/sste
 
 # Tell HTCondor what amount of compute resources  
 request_cpus = 1  
-request_memory = 1GB  
+request_memory = 2GB  
 request_disk = 100MB
 
 # see http://chtc.cs.wisc.edu/helloworld.shtml for more info about two lines below
