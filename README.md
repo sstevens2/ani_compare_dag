@@ -84,6 +84,3 @@ condor_submit_dag runAllANIcompare.dag
 `writeCompareDAG.py` - script that writes the `compare.dag` and `compare.dag.config` files, edit this if you need to change the DAGman config  
 `writeCompareDAG.sub` - submission script for the script above  
 
-
-### ISSUES
-1. `combineAll.sh` expects that the output worked properly, if it didn't you may need to come up with a new way to combine all `*.out` files in each directory - I'm now confused about this issue? Maybe I wanted to combine the files for the ones that worked even if some didn't?
