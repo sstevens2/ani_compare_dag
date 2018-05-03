@@ -74,7 +74,14 @@ condor_submit_dag runAllANIcompare.dag
 3. Runs the subDAG that was written in step 2, which runs all of the ani comparisons.
 4. Puts together the result files by group.
 
-### What are the files in this repo???
+#### Output files
+- `groupname.all.ani.out` - concatenated all of the raw results together
+- `groupname.all.ani.out.cleaned` - `groupname.all.ani.out` without the headers or filenames
+- `groupname/anioutput` - All the individual output files for each ani comparison
+- `groupname.spl` - SPLIT file for each group (needed for running the splits)
+- Bunch of `log` and `err` and `out` files from the job submissions - these are mostly important to look through if your run failed
+
+### What are the other files in this repo???
 `combineANI.sh` - script that puts together all of the output from each phylum directory  
 `errdirs.sh` - creates the error directories for each phylum/directory  
 `header.all.ani.out` - header for all ANIcalculator output  
