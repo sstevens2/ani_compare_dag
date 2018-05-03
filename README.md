@@ -40,19 +40,21 @@ Example directory called `cyanobacteria`
 wc -l cyanobacteria/ani_combos_cyanobacteria.txt
 ```
 The results from this should tell you how many comparisons you will be submitting.
-If you are submitting **a lot** of jobs, you should consider turning on flocking or OSG so it can use those additional resources. (See below) 
+If you are submitting **a lot** (more than 200 genomes in any group) of jobs, you should consider turning on flocking or OSG so it can use those additional resources. (See below) 
 
 ##### Additions you may want if submitting lots of jobs
 If you are running a big number of comparisons, you may want to change the `wantFlocking`(send jobs to other UW clusters) or `WantGlideIn` (send jobs to OSG) lines.  For these lines remove from the `#` to before the `+`. There is a little info about when to use these lines in [this HTC guide](http://chtc.cs.wisc.edu/helloworld.shtml).  
 
 ##### Compare lists instead all v. all
 If you want to compare all genomes in each phylum/directory against each other the setup above will work.
-However if you want to compare the genomes in list A against those in list B (perhaps between two lakes), you need to provide the lists.
+However you may have two groups of genomes you want to check against each other (and not within groups), for example you may want to compare all the Actinobacteria in one lake vs the Actinobacteria in another lake.
+To run it in this manner, you will need to provide lists for each group.
+This is especially needed if you have a large group of genomes (>150) to compare and you don't want to waste time/effort/compute running the comparisons within your groups (otherwise you may as well run the all v. all). 
 The lists need to end in `genome_list.txt` and be the only files ending like that. 
-Example: `acidobacteria/cb_acidobacteria_genome_list.txt` and `acidobacteria/ml_acidobacteria_genome_list.txt`. 
+Example: `acidobacteria/cb_acidobacteria_genome_list.txt` and `acidobacteria/ml_acidobacteria_genome_list.txt`, where each list contains a different `fna` file from that group on each line.
 If the wrong number of lists are found it will give an error.
 If the no lists are provided it will do all v all comparison within that phylum.
-This is decided on a phylum/directory basis, so you could not include these two lists in those where you want all v all comparisons and the lists where you do not.
+This is decided on a phylum/directory basis, so you could include these two lists in those where you want to run the comparison between two groups and not include them in the groups where you want to run all v all comparisons.
 
 ##### Change the number of comparisons which are batched together
 By default this will submit them in groups of 50 comparisons each.  If you'd like to change that, change `50` to your desired group size in the `arguments=` line of `writeCompareDAG.sub`.
