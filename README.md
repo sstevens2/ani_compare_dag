@@ -10,7 +10,7 @@ This setup uses [ANI calculator from JGI](https://ani.jgi-psf.org/html/home.php?
 
 This workflow is meant to run using HTCondor DAG's on a HTC system (UW CHTC).
 
-I originally set this up to run on a bunch of folders which were from the same phylum but you can often replace phylum with directory in many cases.  I also modified it so it will do ANI comparisons between two directories instead of within.
+I originally set this up to run on a bunch of folders which contained genomes which were from the same phylum but you can put them all in one directory or split them into groups at your discretion.  I later added a functionality so that with some setup changes it will run ANI comparisons between two directories instead of within every directory given.
 
 
 ### Setup
@@ -19,8 +19,19 @@ I originally set this up to run on a bunch of folders which were from the same p
 wget https://ani.jgi-psf.org/download_files/ANIcalculator_v1.tgz
 tar -xzvf ANIcalculator_v1.tgz
 ```
-2. In this directory place the directories you want to run ANI compareisons within. You need to change the extensions to `.fna` if they are `.fa` or `.fasta`.  These files should only be the **nucleotide sequences** for the coding regions.  **No tRNA or rRNA gene sequences should be included.**
-3. Create a file called `groupslist.txt` that contains a list of each of the directories to run comparisons on. It doesn't have to be separated by phylum but that is how it was originally designed. The program with run all pairwise ANI comparisons within each directory given. It will **not** run self verses self because ANI calculator doesn't like running on the same file twice. It will **only** run the comparison in one direction because ANI calculator runs both directions by default.  The `groupslist.txt` file should have one directory per line with no `/` after it.  Example:
+2. Clone this `ani_compare_dag` folder to your home folder.  Switch into the `ani_compare_dag` directory and place the directories you want to run ANI compareisons within. You need to change the extensions to `.fna` if they are `.fa` or `.fasta`.  These files should only be the **nucleotide sequences** for the coding regions.  **No tRNA or rRNA gene sequences should be included.**
+```
+git clone https://github.com/sstevens2/ani_compare_dag.git
+cd ani_compare_dag
+```
+Optionally you can rename the `ani_compare_dag` if you'd like.  I did this because I cloned a new `ani_compare_dag` for each lake dataset I analyzed, so I wanted them each named by the dataset I ran it on.  Below they will still be referenced as `ani_compare_dag`.
+```
+git clone https://github.com/sstevens2/ani_compare_dag.git myFavLake
+cd an_compare_dag myFavLake
+```
+Then transfer your directories of gene fna files into the `ani_compare_dag` using your favorite transfer method (scp, cyberduck, etc).
+
+3. In the `ani_compare_dag` directory, create a file called `groupslist.txt` that contains a list of each of the directories to run comparisons on. It doesn't have to be separated by phylum but that is how it was originally designed. The program with run all pairwise ANI comparisons within each directory given. It will **not** run self verses self because ANI calculator doesn't like running on the same file twice. It will **only** run the comparison in one direction because ANI calculator runs both directions by default.  The `groupslist.txt` file should have one directory per line with no `/` after it.  Example:
 ```
 $ head groupslist.txt
 acidobacteria
