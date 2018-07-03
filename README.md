@@ -80,8 +80,8 @@ condor_submit_dag runAllANIcompare.dag
 #### A little on how it works
 
 `runAllANIcompare.dag` 
-1. Makes the `err` directories for runfiles to write to for each phylum
-2. Submits the script to write up a subDAG and splices (one for each group) for all of the possible combinations
+1. Makes the `err` directories for runfiles to write to for each group
+2. Submits the script to write up a subDAG and splices for all of the possible combinations
 3. Runs the subDAG that was written in step 2, which runs all of the ani comparisons.
 4. Puts together the result files by group.
 
@@ -93,8 +93,8 @@ condor_submit_dag runAllANIcompare.dag
 - Bunch of `log` and `err` and `out` files from the job submissions - these are mostly important to look through if your run failed
 
 ### What are the other files in this repo???
-`combineANI.sh` - script that puts together all of the output from each phylum directory  
-`errdirs.sh` - creates the error directories for each phylum/directory  
+`combineANI.sh` - script that puts together all of the output from each group directory  
+`errdirs.sh` - creates the error directories for each group/directory  
 `header.all.ani.out` - header for all ANIcalculator output  
 `makeANIcombos.py` - script that makes a list of all the ANI combinations for a directory or between two lists
 `group.sub` - submission script for each group/directory included  
