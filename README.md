@@ -24,7 +24,7 @@ tar -xzvf ANIcalculator_v1.tgz
 git clone https://github.com/sstevens2/ani_compare_dag.git
 cd ani_compare_dag
 ```
-Optionally you can rename the `ani_compare_dag` if you'd like.  I did this because I cloned a new `ani_compare_dag` for each lake dataset I analyzed, so I wanted them each named by the dataset I ran it on.  Below they will still be referenced as `ani_compare_dag`.
+**OR** you can rename the `ani_compare_dag` if you'd like.  I did this because I cloned a new `ani_compare_dag` for each lake dataset I analyzed, so I wanted them each named by the dataset I ran it on.  Below they will still be referenced as `ani_compare_dag`.
 ```
 git clone https://github.com/sstevens2/ani_compare_dag.git myFavLake
 cd an_compare_dag myFavLake
