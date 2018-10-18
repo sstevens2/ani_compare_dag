@@ -24,9 +24,11 @@ def makeCombos(group, filelist, filelist2):
 	with open(group+'/ani_combos_'+group+'.txt', 'w') as output:
 		used=[]
 		for fn1 in filelist:
-			fn1 = fn1.split(group+'/')[1]
+			if fn1.contains('/'):
+				fn1 = fn1.split(group+'/')[1]
 			for fn2 in filelist2:
-				fn2 = fn2.split(group+'/')[1]
+				if fn2.contains('/'):
+					fn2 = fn2.split(group+'/')[1]
 				if fn2 in used:
 					continue
 				elif fn1 == fn2:
