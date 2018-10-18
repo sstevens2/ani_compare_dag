@@ -58,11 +58,13 @@ If you are running a big number of comparisons, you may want to change the `want
 
 ##### Compare lists instead all v. all
 If you want to compare all genomes in each phylum/directory against each other the setup above will work.
-However you may have two groups of genomes you want to check against each other (and not within groups), for example you may want to compare all the Actinobacteria in one lake vs the Actinobacteria in another lake.
-To run it in this manner, you will need to provide lists for each group.
+However you may have two groups of genomes you want to check against each other (and not within groups), for example you may want to compare all the Acidobacteria in one lake vs the Acidobacteria in another lake.
+To run it in this manner, you will need to provide lists for each group, and put all of the `*.fna` files into the same directory. 
 This is especially needed if you have a large group of genomes (>150) to compare and you don't want to waste time/effort/compute running the comparisons within your groups (otherwise you may as well run the all v. all). 
 The lists need to end in `genome_list.txt` and be the only files ending like that. 
 Example: `acidobacteria/cb_acidobacteria_genome_list.txt` and `acidobacteria/ml_acidobacteria_genome_list.txt`, where each list contains a different `fna` file from that group on each line.
+The final group directory (Example `acidobacteria/`) should contain all of the `*.fna` and `*genome_list.txt` files. 
+Then add the directory to the `groupslist.txt` file (Example `acidobacteria`) without `/`.
 If the wrong number of lists are found it will give an error.
 If the no lists are provided it will do all v all comparison within that phylum.
 This is decided on a phylum/directory basis, so you could include these two lists in those where you want to run the comparison between two groups and not include them in the groups where you want to run all v all comparisons.
